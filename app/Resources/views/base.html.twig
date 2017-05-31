@@ -1,13 +1,57 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
+<head>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- styles -->
+    <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    {% block styles %}{% endblock %}
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <!-- Logo -->
+                <div class="logo">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <h1><a href="{{ path('admin') }}">TR admin page</a></h1>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <h1><a href="{{ path('user') }}">TR user page</a></h1>
+                    {% else %}
+                        <h1><a>TR admin page</a></h1>
+                    {% endif %}
+                </div>
+            </div>
+            {% block logout %}{% endblock %}
+        </div>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="row">
+        {% block navigation %}{% endblock%}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+    </div>
+</div>
+
+{% block footer %}{% endblock %}
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
+
+{% block scripts %}{% endblock %}
+</body>
 </html>

@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}TR Dashboard{% endblock %}
+
+{% block logout %}
+    <div class="col-md-2">
+        <div class="navbar navbar-inverse" role="banner">
+            <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('logout') }}">Logout</a></li>>
+                </ul>
+            </nav>
+        </div>
+    </div>
+{% endblock %}
+
+{% block navigation %}
+    <div class="col-md-2">
+        <div class="sidebar content-box" style="display: block;">
+            <ul class="nav">
+                <!-- Main menu -->
+                <li class="current"><a href="{{ path('admin') }}"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                <li><a href="{{ path('reports') }}"><i class="glyphicon glyphicon-stats"></i> Report</a></li>
+                <li class="submenu">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-link"></i> Vehicles
+                        <span class="caret pull-right"></span>
+                    </a>
+                    <!-- Sub menu -->
+                    <ul style="display: none;">
+                        <li><a href="{{ path('vehicles') }}">Vehicle list</a></li>
+                        <li><a href="{{ path('vehicle_create') }}">Create new</a></li>
+                    </ul>
+                </li>
+                <li class="submenu">
+                    <a href="#">
+                        <i class="glyphicon glyphicon-user"></i> Users
+                        <span class="caret pull-right"></span>
+                    </a>
+                    <!-- Sub menu -->
+                    <ul style="display: none;">
+                        <li><a href="{{ path('users') }}">User list</a></li>
+                        <li><a href="{{ path('user_create') }}">Create new</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md-12 panel-warning">
+                <div class="content-box-header panel-heading">
+                    <div class="panel-title text-center" style="width: 100%; margin-bottom: 30px">Select Your Action</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 panel-success">
+                <div class="content-box-header panel-heading">
+                    <div class="panel-title">Check Report</div>
+                </div>
+                <div class="content-box-large box-with-header">
+                    <a href="{{ path('reports') }}" class="glyphicon glyphicon-stats select-action"></a>
+                </div>
+            </div>
+            <div class="col-md-4 panel-success">
+                <div class="content-box-header panel-heading">
+                    <div class="panel-title ">Vehicles</div>
+                </div>
+                <div class="content-box-large box-with-header">
+                    <a href="{{ path('vehicles') }}" class="glyphicon glyphicon-link select-action"></a>
+                </div>
+            </div>
+            <div class="col-md-4 panel-success">
+                <div class="content-box-header panel-heading">
+                    <div class="panel-title ">Users</div>
+                </div>
+                <div class="content-box-large box-with-header">
+                    <a href="{{ path('users') }}" class="glyphicon glyphicon-user select-action"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="container">
+
+            <div class="copy text-center">
+                Copyright 2018 <a href='#'>Website</a>
+            </div>
+
+        </div>
+    </footer>
+{% endblock %}
+
+
